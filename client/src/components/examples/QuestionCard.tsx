@@ -5,7 +5,7 @@ export default function QuestionCardExample() {
   const mockQuestion: QuizQuestion = {
     id: '1',
     rootNote: 'C',
-    interval: { name: 'b3', semitones: 3, displayName: 'b3 (minor 3rd)' },
+    interval: { name: '♭3', semitones: 3, displayName: '♭3 (minor 3rd)' },
     correctAnswer: 'Eb',
     options: ['Eb', 'E', 'D', 'F']
   };
