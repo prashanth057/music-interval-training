@@ -5,33 +5,36 @@ export interface Interval {
   name: string;
   semitones: number;
   displayName: string;
+  isExtended: boolean;
 }
 
-export const INTERVALS: Interval[] = [
-  { name: '1', semitones: 0, displayName: 'Root (1)' },
-  { name: '♭2', semitones: 1, displayName: '♭2 (minor 2nd)' },
-  { name: '2', semitones: 2, displayName: '2 (major 2nd)' },
-  { name: '♭3', semitones: 3, displayName: '♭3 (minor 3rd)' },
-  { name: '3', semitones: 4, displayName: '3 (major 3rd)' },
-  { name: '4', semitones: 5, displayName: '4 (perfect 4th)' },
-  { name: '♯4', semitones: 6, displayName: '♯4 (tritone)' },
-  { name: '♭5', semitones: 6, displayName: '♭5 (tritone)' },
-  { name: '5', semitones: 7, displayName: '5 (perfect 5th)' },
-  { name: '♯5', semitones: 8, displayName: '♯5 (augmented 5th)' },
-  { name: '♭6', semitones: 8, displayName: '♭6 (minor 6th)' },
-  { name: '6', semitones: 9, displayName: '6 (major 6th)' },
-  { name: '♭7', semitones: 10, displayName: '♭7 (minor 7th)' },
-  { name: '7', semitones: 11, displayName: '7 (major 7th)' },
-  { name: '♭9', semitones: 1, displayName: '♭9 (flat nine)' },
-  { name: '9', semitones: 2, displayName: '9 (nine)' },
-  { name: '♯9', semitones: 3, displayName: '♯9 (sharp nine)' },
-  { name: '11', semitones: 5, displayName: '11 (eleven)' },
-  { name: '♯11', semitones: 6, displayName: '♯11 (sharp eleven)' },
-  { name: '♭13', semitones: 8, displayName: '♭13 (flat thirteen)' },
-  { name: '13', semitones: 9, displayName: '13 (thirteen)' },
+export const INTERVALS_WITHIN_OCTAVE: Interval[] = [
+  { name: '♭II', semitones: 1, displayName: '♭II (minor 2nd)', isExtended: false },
+  { name: 'II', semitones: 2, displayName: 'II (major 2nd)', isExtended: false },
+  { name: '♭III', semitones: 3, displayName: '♭III (minor 3rd)', isExtended: false },
+  { name: 'III', semitones: 4, displayName: 'III (major 3rd)', isExtended: false },
+  { name: 'IV', semitones: 5, displayName: 'IV (perfect 4th)', isExtended: false },
+  { name: '♯IV', semitones: 6, displayName: '♯IV (tritone)', isExtended: false },
+  { name: '♭V', semitones: 6, displayName: '♭V (tritone)', isExtended: false },
+  { name: 'V', semitones: 7, displayName: 'V (perfect 5th)', isExtended: false },
+  { name: '♯V', semitones: 8, displayName: '♯V (augmented 5th)', isExtended: false },
+  { name: '♭VI', semitones: 8, displayName: '♭VI (minor 6th)', isExtended: false },
+  { name: 'VI', semitones: 9, displayName: 'VI (major 6th)', isExtended: false },
+  { name: '♭VII', semitones: 10, displayName: '♭VII (minor 7th)', isExtended: false },
+  { name: 'VII', semitones: 11, displayName: 'VII (major 7th)', isExtended: false },
 ];
 
-export const QUIZ_INTERVALS = INTERVALS.filter(i => i.name !== '1');
+export const EXTENDED_INTERVALS: Interval[] = [
+  { name: '♭9', semitones: 1, displayName: '♭9 (flat nine)', isExtended: true },
+  { name: '9', semitones: 2, displayName: '9 (nine)', isExtended: true },
+  { name: '♯9', semitones: 3, displayName: '♯9 (sharp nine)', isExtended: true },
+  { name: '11', semitones: 5, displayName: '11 (eleven)', isExtended: true },
+  { name: '♯11', semitones: 6, displayName: '♯11 (sharp eleven)', isExtended: true },
+  { name: '♭13', semitones: 8, displayName: '♭13 (flat thirteen)', isExtended: true },
+  { name: '13', semitones: 9, displayName: '13 (thirteen)', isExtended: true },
+];
+
+export const ALL_INTERVALS = [...INTERVALS_WITHIN_OCTAVE, ...EXTENDED_INTERVALS];
 
 export function getNoteAtInterval(root: RootNote, semitones: number): RootNote {
   const rootIndex = ROOT_NOTES.indexOf(root);
@@ -57,7 +60,10 @@ export interface QuizQuestion {
 
 export function generateQuestion(): QuizQuestion {
   const rootNote = ROOT_NOTES[Math.floor(Math.random() * ROOT_NOTES.length)];
-  const interval = QUIZ_INTERVALS[Math.floor(Math.random() * QUIZ_INTERVALS.length)];
+  
+  const useExtended = Math.random() < 0.15;
+  const intervalPool = useExtended ? EXTENDED_INTERVALS : INTERVALS_WITHIN_OCTAVE;
+  const interval = intervalPool[Math.floor(Math.random() * intervalPool.length)];
   
   const correctAnswer = getNoteAtInterval(rootNote, interval.semitones);
   
