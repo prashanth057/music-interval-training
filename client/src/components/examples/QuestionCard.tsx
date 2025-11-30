@@ -4,12 +4,10 @@ import type { QuizQuestion } from '@/lib/musicTheory';
 export default function QuestionCardExample() {
   const mockQuestion: QuizQuestion = {
     id: '1',
-    rootNote: 'D',
-    scaleType: 'major',
-    degree: 3,
-    questionType: 'chord_type',
-    correctAnswer: 'minor',
-    options: ['Major', 'minor', 'diminished', 'augmented']
+    rootNote: 'C',
+    interval: { name: 'b3', semitones: 3, displayName: 'b3 (minor 3rd)' },
+    correctAnswer: 'Eb',
+    options: ['Eb', 'E', 'D', 'F']
   };
 
   return <QuestionCard question={mockQuestion} />;

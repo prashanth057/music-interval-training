@@ -16,7 +16,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
           </div>
           <CardTitle className="text-3xl font-bold">Scale Master</CardTitle>
           <CardDescription className="text-base mt-2">
-            Train your knowledge of scales, degrees, and diatonic chords
+            Master jazz intervals across all 12 keys
           </CardDescription>
         </CardHeader>
         
@@ -25,18 +25,18 @@ export function StartScreen({ onStart }: StartScreenProps) {
             <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
               <Zap className="h-5 w-5 text-primary mt-0.5" />
               <div>
-                <p className="font-medium text-sm">Rapid-fire questions</p>
+                <p className="font-medium text-sm">All 12 root notes</p>
                 <p className="text-xs text-muted-foreground">
-                  All 12 keys, major & minor scales
+                  Practice intervals from any starting note
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
               <Brain className="h-5 w-5 text-primary mt-0.5" />
               <div>
-                <p className="font-medium text-sm">Scale degrees & chord types</p>
+                <p className="font-medium text-sm">Jazz interval notation</p>
                 <p className="text-xs text-muted-foreground">
-                  Learn diatonic harmony patterns
+                  b3, #11, b9, 13 and more
                 </p>
               </div>
             </div>
