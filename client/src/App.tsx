@@ -8,8 +8,9 @@ import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
+    <Router base="/music-interval-training">
     <Switch>
-      <Route path="/music-interval-training" component={Home} />
+      <Route path="/" component={Home} />
       <Route component={NotFound} />
     </Switch>
   );
