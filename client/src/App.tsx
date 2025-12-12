@@ -13,6 +13,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route component={NotFound} />
     </Switch>
+    </Router>
   );
 }
 
